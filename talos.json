@@ -1,0 +1,8 @@
+{
+    "talos_compatibility": {
+        "protocol_range": "^1.0.0",
+        "contract_hash": "qiLECQWBPF0mu7krXDT8ZTECTy-FQnLmTczQp9SRb08",
+        "schedule_hash": "Q_hvsAzI46oi8yZZjtqsbSab1ZFaUnAf6wCvsd5Ey0k",
+        "contracts_version": "1.0.0"
+    }
+}
