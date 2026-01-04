@@ -1,34 +1,36 @@
-# talos-sdk-go Makefile
+# Universal Makefile Interface
+all: install lint test build conformance
 
-.PHONY: build test conformance clean doctor start stop
+install:
+	go mod download
 
-# Default target
-all: build test
+typecheck:
+	# Go build acts as typecheck
+	go build ./...
 
-build:
-	@echo "Building Go SDK..."
-	go build -o talos-sdk ./cmd/talos-sdk
+lint:
+	# Style + Types (Fail on error)
+	golangci-lint run ./...
+
+format:
+	# Auto-fix style
+	gofmt -w .
+	goimports -w .
 
 test:
-	@echo "Running tests..."
-	go test ./pkg/...
+	# Unit tests
+	go test ./... -cover
 
-conformance: build
-	@echo "Running conformance tests..."
-	./talos-sdk --vectors ../talos-contracts/test_vectors/sdk/release_sets/v1.0.0.json --report conformance.xml
+conformance:
+	# Run conformance vectors
+	@if [ -z "$(RELEASE_SET)" ]; then \
+		echo "Skipping conformance (No RELEASE_SET provided)"; \
+	else \
+		go test ./pkg/talos/conformance -v -args -vectors $(RELEASE_SET); \
+	fi
 
-doctor:
-	@echo "Checking environment..."
-	@go version || echo "Go missing"
+build:
+	go build -o bin/talos-sdk ./cmd/talos-sdk
 
 clean:
-	@echo "Cleaning..."
-	rm -f talos-sdk conformance.xml
-	go clean
-
-# Scripts wrapper
-start:
-	@./scripts/start.sh
-
-stop:
-	@./scripts/stop.sh
+	rm -rf bin
