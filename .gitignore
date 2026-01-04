@@ -18,3 +18,7 @@
 go.work
 talos-sdk
 conformance.xml
+junit.xml
+.DS_Store
+.idea/
+.vscode/

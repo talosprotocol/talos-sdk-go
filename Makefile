@@ -26,6 +26,21 @@ test:
 	# Unit tests
 	go test ./... -cover
 
+coverage:
+	# Run coverage report
+	go test -coverprofile=coverage.out ./pkg/...
+	go tool cover -func=coverage.out
+
+coverage-check:
+	# Enforce 80% threshold
+	@go test -coverprofile=coverage.out ./pkg/... > /dev/null
+	@TOTAL_COV=$$(go tool cover -func=coverage.out | grep total | grep -o '[0-9]*\.[0-9]*'); \
+	echo "Total Coverage: $$TOTAL_COV%"; \
+	if [ 1 -eq "$$(echo "$$TOTAL_COV < 80.0" | bc)" ]; then \
+		echo "Coverage below 80%"; \
+		exit 1; \
+	fi
+
 conformance:
 	# Run conformance vectors
 	@if [ -z "$(RELEASE_SET)" ]; then \
