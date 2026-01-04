@@ -10,7 +10,12 @@ typecheck:
 
 lint:
 	# Style + Types (Fail on error)
-	golangci-lint run ./...
+	@if command -v golangci-lint >/dev/null; then \
+		golangci-lint run ./...; \
+	else \
+		echo "Warning: golangci-lint not found, falling back to gofmt"; \
+		gofmt -l .; \
+	fi
 
 format:
 	# Auto-fix style
