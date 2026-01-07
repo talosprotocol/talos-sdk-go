@@ -1,0 +1,9 @@
+#!/usr/bin/env bash
+set -e
+
+echo "🔍 Running pre-commit checks for talos-sdk-go..."
+
+echo "1) Running go test..."
+go test ./...
+
+echo "✅ talos-sdk-go checks passed!"
