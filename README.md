@@ -57,3 +57,9 @@ go get github.com/talosprotocol/talos-sdk-go
 ## References
 1.  [Mathematical Security Proof](../talos-docs/Mathematical_Security_Proof.md)
 2.  [Talos Contracts](../talos-contracts/README.md)
+
+## License
+
+Licensed under the Apache License 2.0. See [LICENSE](LICENSE).
+
+Licensed under the Apache License 2.0. See [LICENSE](LICENSE).
