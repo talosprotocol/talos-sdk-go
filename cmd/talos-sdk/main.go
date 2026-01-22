@@ -7,7 +7,6 @@ import (
 	"encoding/xml"
 	"flag"
 	"fmt"
-	"io/ioutil"
 	"os"
 	"strings"
 	"time"
@@ -78,7 +77,7 @@ func main() {
 		os.Exit(1)
 	}
 
-	data, err := ioutil.ReadFile(*vectorsPath) // deprecated but std
+	data, err := os.ReadFile(*vectorsPath)
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error reading file: %v\n", err)
 		os.Exit(2)
@@ -139,7 +138,7 @@ func main() {
 	if *reportPath != "" {
 		suites := TestSuites{Suites: []TestSuite{suite}}
 		bytes, _ := xml.MarshalIndent(suites, "", "  ")
-		_ = ioutil.WriteFile(*reportPath, append([]byte(xml.Header), bytes...), 0644)
+		_ = os.WriteFile(*reportPath, append([]byte(xml.Header), bytes...), 0644)
 		fmt.Printf("Report written to %s\n", *reportPath)
 	}
 

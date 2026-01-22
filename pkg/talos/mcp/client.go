@@ -110,7 +110,7 @@ func (c *McpClient) ListServers(ctx context.Context) ([]Server, error) {
 	if err != nil {
 		return nil, err
 	}
-	defer resp.Body.Close()
+	defer resp.Body.Close() //nolint:errcheck
 
 	if resp.StatusCode != http.StatusOK {
 		return nil, c.handleError(resp)
@@ -142,7 +142,7 @@ func (c *McpClient) ListTools(ctx context.Context, serverID string) ([]Tool, err
 	if err != nil {
 		return nil, err
 	}
-	defer resp.Body.Close()
+	defer resp.Body.Close() //nolint:errcheck
 
 	if resp.StatusCode != http.StatusOK {
 		return nil, c.handleError(resp)
@@ -264,7 +264,7 @@ func (c *McpClient) CallTool(ctx context.Context, serverID, toolName string, inp
 	if err != nil {
 		return nil, err
 	}
-	defer resp.Body.Close()
+	defer resp.Body.Close() //nolint:errcheck
 
 	if resp.StatusCode != http.StatusOK {
 		return nil, c.handleError(resp)
