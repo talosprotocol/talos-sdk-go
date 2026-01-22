@@ -110,7 +110,7 @@ func (c *McpClient) ListServers(ctx context.Context) ([]Server, error) {
 	if err != nil {
 		return nil, err
 	}
-	defer resp.Body.Close() //nolint:errcheck
+	defer resp.Body.Close() //nolint:errcheck //nolint:errcheck
 
 	if resp.StatusCode != http.StatusOK {
 		return nil, c.handleError(resp)
