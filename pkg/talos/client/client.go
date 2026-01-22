@@ -52,3 +52,34 @@ func (c *GatewayClient) GetResource(path string) (string, error) {
 
 	return string(body), nil
 }
+
+// StreamResource returns a channel of events (lines).
+// Caller must close the returned channel or cancellation context to stop?
+// Ideally, return a ReadCloser.
+func (c *GatewayClient) StreamResource(path string) (io.ReadCloser, error) {
+	url := fmt.Sprintf("%s/%s", c.BaseURL, path)
+	req, err := http.NewRequest("GET", url, nil)
+	if err != nil {
+		return nil, err
+	}
+	req.Header.Set("Accept", "text/event-stream")
+
+	// Use a client with no timeout for streaming
+	streamClient := *c.HTTP
+	streamClient.Timeout = 0
+
+	resp, err := streamClient.Do(req)
+	if err != nil {
+		return nil, fmt.Errorf("network error: %w", err)
+	}
+
+	if resp.StatusCode >= 400 {
+		resp.Body.Close() //nolint:errcheck
+		return nil, &TalosError{
+			Code:    resp.StatusCode,
+			Message: "Stream Error",
+		}
+	}
+
+	return resp.Body, nil
+}
