@@ -5,18 +5,18 @@ SHELL := /bin/bash
 all: build test
 
 build:
-\tgo build -v ./...
+	go build -v ./...
 
 test:
-\tgo test -v ./...
+	go test -v ./...
 
 lint:
-\twhich golangci-lint || curl -sSfL https://raw.githubusercontent.com/golangci/golangci-lint/master/install.sh | sh -s -- -b $(go env GOPATH)/bin v1.56.2
-\tgolangci-lint run
+	which golangci-lint || curl -sSfL https://raw.githubusercontent.com/golangci/golangci-lint/master/install.sh | sh -s -- -b $(go env GOPATH)/bin v1.56.2
+	golangci-lint run
 
 sbom:
-\twhich cyclonedx-gomod || go install github.com/cyclonedx/cyclonedx-gomod/cmd/cyclonedx-gomod@latest
-\tcyclonedx-gomod mod -json -output bom.json
+	which cyclonedx-gomod || go install github.com/cyclonedx/cyclonedx-gomod/cmd/cyclonedx-gomod@latest
+	cyclonedx-gomod mod -json -output bom.json
 
 clean:
-\t@rm -f bom.json
+	@rm -f bom.json
