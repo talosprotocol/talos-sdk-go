@@ -12,7 +12,7 @@ test:
 
 lint:
 	which golangci-lint || curl -sSfL https://raw.githubusercontent.com/golangci/golangci-lint/master/install.sh | sh -s -- -b $(shell go env GOPATH)/bin v1.56.2
-	golangci-lint run
+	$(shell go env GOPATH)/bin/golangci-lint run
 
 sbom:
 	which cyclonedx-gomod || go install github.com/cyclonedx/cyclonedx-gomod/cmd/cyclonedx-gomod@latest
