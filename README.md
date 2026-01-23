@@ -23,8 +23,6 @@ This SDK provides the same interface guarantees as the Python and TS SDKs.
 
 ## Technical Design
 
-### Technical Design
-
 ### Modules
 
 - **pkg/ratchet**: Core state machine.
@@ -51,7 +49,7 @@ go get github.com/talosprotocol/talos-sdk-go
 
 ### Common Workflows
 
-1.  **MCP Interaction**:
+1. **MCP Interaction**:
 
     ```go
     import (
@@ -92,8 +90,9 @@ go get github.com/talosprotocol/talos-sdk-go
 
 ## References
 
-1.  [Mathematical Security Proof](../talos-docs/Mathematical_Security_Proof.md)
-2.  [Talos Contracts](../talos-contracts/README.md)
+1. [Mathematical Security Proof](../talos-docs/Mathematical_Security_Proof.md)
+2. [Talos Contracts](../talos-contracts/README.md)
+3. [Talos Wiki](https://github.com/talosprotocol/talos/wiki)
 
 ## License
 
