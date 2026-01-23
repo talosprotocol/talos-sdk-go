@@ -1,0 +1,15 @@
+repo_id: "sdks-go"
+repo_root: "."
+commands:
+  test_entrypoint: "scripts/test.sh"
+coverage:
+  enabled: false  # Disabled until gocover-cobertura is installed
+  format: "cobertura"
+  report_path: "artifacts/coverage/coverage.xml"
+  thresholds:
+    line: 0.70
+    branch: 0.60
+  path_thresholds:
+    "pkg/crypto/**": { line: 0.85 }
+ci:
+  default: ["--smoke", "--unit", "--coverage"]

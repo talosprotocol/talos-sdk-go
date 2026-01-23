@@ -1,0 +1,12 @@
+*.md
+!README.md
+.git
+.github
+.gitignore
+.env*
+artifacts/
+bom.json
+*.test
+*.out
+.vscode
+.idea
