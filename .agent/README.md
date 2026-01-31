@@ -1,4 +1,5 @@
 # Agent workspace: sdks/go
+> **Project**: sdks/go
 
 This folder contains agent-facing context, tasks, workflows, and planning artifacts for this submodule.
 
