@@ -26,5 +26,4 @@ if [[ ! -f "$VECTORS_FILE" ]]; then
 fi
 
 echo "✅ Vectors Found: $VECTORS_FILE"
-echo "⚠️  Runner not yet implemented. (Phase 0 Check Passed)"
-# TODO: Invoke 'go run cmd/vector-runner/main.go -vectors $VECTORS_FILE'
+go run ./cmd/vector-runner "$VECTORS_FILE"

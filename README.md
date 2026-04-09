@@ -37,7 +37,9 @@ This SDK provides the same interface guarantees as the Python and TS SDKs.
 
 **Status**: Alpha.
 
-- **Conformance**: Integrating with `v1.1.0` vectors.
+- **Conformance**: `scripts/test_conformance.sh` now passes the full pinned `v1.1.0` SDK release set, including canonical JSON, signing, capability verification, frame codec, MCP signing, ratchet micro-vectors, and the `v1_1_0_roundtrip.json` golden trace.
+- **A2A v1**: `pkg/talos/a2a` now provides Agent Card discovery, canonical `/rpc` helpers, Talos extension introspection, collect-style streaming helpers, callback-style per-event handling, and channel-based stream returns for `SendStreamingMessage` and `SubscribeToTask`.
+- **Version Metadata**: `pkg/talos/version` exports `SDK_VERSION`, `SUPPORTED_PROTOCOL_RANGE`, and `CONTRACT_MANIFEST_HASH`, with tests that recompute the pinned manifest hash from `contracts/sdk/contract_manifest.json`.
 
 ## Usage
 
@@ -78,7 +80,7 @@ go get github.com/talosprotocol/talos-sdk-go
 ## Operational Interface
 
 - `make test`: Run `go test`.
-- `make conformance`: Run vector tests.
+- `scripts/test_conformance.sh`: Run the pinned `v1.1.0` SDK release set.
 - `scripts/test.sh`: CI entrypoint.
 
 ## Security Considerations
