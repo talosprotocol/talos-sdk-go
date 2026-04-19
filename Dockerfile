@@ -15,6 +15,7 @@ RUN go mod download
 # Copy source
 WORKDIR /workspace
 COPY sdks/go ./sdks/go
+COPY contracts ./contracts
 COPY scripts ./scripts
 
 # Build tests (compile time verification)
@@ -36,6 +37,7 @@ RUN apk add --no-cache git make bash
 
 # Copy from builder
 COPY --from=builder /workspace/sdks/go ./
+COPY --from=builder /workspace/contracts /workspace/contracts
 COPY --from=builder /workspace/scripts /workspace/scripts
 
 # Create non-root user
