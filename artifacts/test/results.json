@@ -1,6 +1,6 @@
 {
   "repo_id": "sdks-go",
-  "command": "--unit",
+  "command": "--full",
   "status": "pass",
-  "timestamp": "2026-04-09T23:52:07Z"
+  "timestamp": "2026-04-22T00:53:56Z"
 }
