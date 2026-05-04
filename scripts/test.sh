@@ -17,7 +17,7 @@ run_unit() {
 
 run_smoke() {
     echo "=== Running Smoke Tests ==="
-    go test -v -run TestSmoke ./... || run_unit
+    go test -v -run TestSmoke ./...
 }
 
 run_integration() {
