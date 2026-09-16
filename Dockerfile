@@ -3,7 +3,7 @@
 # =============================================================================
 
 # Builder stage - compile and cache dependencies
-FROM golang:1.21-alpine AS builder
+FROM golang:1.27-alpine AS builder
 
 WORKDIR /workspace
 
@@ -23,7 +23,7 @@ WORKDIR /workspace/sdks/go
 RUN go test -c ./...
 
 # Test runner stage
-FROM golang:1.21-alpine
+FROM golang:1.27-alpine
 
 # OCI labels
 LABEL org.opencontainers.image.source="https://github.com/talosprotocol/talos"
